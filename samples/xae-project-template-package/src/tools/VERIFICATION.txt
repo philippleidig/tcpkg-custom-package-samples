@@ -1,0 +1,20 @@
+=== VERIFICATION ===
+
+This package contains a TwinCAT XAE project template intended for installation into the
+project template directory of a TwinCAT engineering installation.
+
+Files included (under tools\Custom TwinCAT Project\):
+- Custom TwinCAT Project.tsproj   The TwinCAT solution/project skeleton
+- Custom TwinCAT Project.ico      Icon shown in the "New Project" dialog
+- templates.vsdir                 Visual Studio directory descriptor that registers the
+                                  template with the New Project dialog
+
+The template was created by the package author with TwinCAT XAE.
+
+No external downloads or third-party binaries are included.
+
+To verify:
+1. Both "Custom TwinCAT Project.tsproj" and "templates.vsdir" are plain text and can be
+   inspected in any text editor.
+2. The .tsproj file can be opened with TwinCAT XAE to review the preconfigured settings.
+3. The package version matches the <version> element in TwinCATXaeProjectTemplate.nuspec.

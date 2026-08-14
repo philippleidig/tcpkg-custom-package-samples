@@ -1,0 +1,129 @@
+name: Build TcPkg sample packages
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Pack samples
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # GitVersion needs the full history to determine a version
+          fetch-depth: 0
+
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v3
+        with:
+          versionSpec: '5.x'
+
+      - name: Determine version
+        id: gitversion
+        uses: gittools/actions/gitversion/execute@v3
+        with:
+          useConfigFile: true
+          configFilePath: GitVersion.yml
+
+      - name: Display version
+        shell: pwsh
+        run: |
+          Write-Host "SemVer      : ${{ steps.gitversion.outputs.semVer }}"
+          Write-Host "NuGetVersion: ${{ steps.gitversion.outputs.nuGetVersion }}"
+
+      - name: Setup NuGet CLI
+        uses: NuGet/setup-nuget@v2
+        with:
+          nuget-version: 'latest'
+
+      # tcpkg is not available on GitHub-hosted runners, so pack.ps1 falls back
+      # to 'nuget pack', which produces an equivalent .nupkg.
+      - name: Pack all samples
+        shell: pwsh
+        run: |
+          ./build/pack.ps1 `
+            -Version "${{ steps.gitversion.outputs.nuGetVersion }}" `
+            -OutputDirectory "${{ github.workspace }}/dist"
+
+      - name: Verify package contents
+        shell: pwsh
+        run: |
+          $packages = Get-ChildItem "${{ github.workspace }}/dist" -Filter *.nupkg
+          if ($packages.Count -eq 0) { throw "No packages were produced." }
+
+          foreach ($package in $packages) {
+            $extractDir = Join-Path $env:RUNNER_TEMP "verify/$($package.BaseName)"
+            $zipPath    = Join-Path $env:RUNNER_TEMP "$($package.BaseName).zip"
+
+            Copy-Item $package.FullName $zipPath -Force
+            Expand-Archive $zipPath -DestinationPath $extractDir -Force
+
+            $installScript = Join-Path $extractDir 'tools/chocolateyinstall.ps1'
+            if (-not (Test-Path $installScript)) {
+              throw "$($package.Name) is missing tools/chocolateyinstall.ps1"
+            }
+
+            $nuspec = Get-ChildItem $extractDir -Filter *.nuspec -File | Select-Object -First 1
+            if (-not $nuspec) { throw "$($package.Name) does not contain a .nuspec" }
+
+            # Fails the build if the manifest became malformed.
+            $xml = [xml](Get-Content -LiteralPath $nuspec.FullName -Raw)
+
+            # A workload is only treated as one by TcPkg when the package type is
+            # declared; the 'Workload' tag alone is not sufficient.
+            if ($xml.package.metadata.tags -split '\s+' -contains 'Workload') {
+              $packageTypes = @($xml.package.metadata.packageTypes.packageType.name)
+              if ($packageTypes -notcontains 'Workload') {
+                throw "$($package.Name) is tagged 'Workload' but does not declare <packageType name=""Workload"" />"
+              }
+            }
+
+            Write-Host "OK  $($package.Name)  ($($xml.package.metadata.id) $($xml.package.metadata.version))"
+          }
+
+      - name: Lint PowerShell scripts
+        shell: pwsh
+        run: |
+          Install-Module PSScriptAnalyzer -Force -Scope CurrentUser -ErrorAction Stop
+          $results = Invoke-ScriptAnalyzer -Path . -Recurse -Settings ./PSScriptAnalyzerSettings.psd1
+          if ($results) {
+            $results | Format-Table RuleName, Severity, ScriptName, Line, Message -AutoSize -Wrap
+            throw "PSScriptAnalyzer reported $($results.Count) finding(s)."
+          }
+          Write-Host "PSScriptAnalyzer is clean."
+
+      - name: Upload package artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: tcpkg-sample-packages
+          path: dist/*.nupkg
+          if-no-files-found: error
+
+  release:
+    name: Publish release
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+
+    steps:
+      - name: Download package artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: tcpkg-sample-packages
+          path: ./packages
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ./packages/*.nupkg
+          generate_release_notes: true

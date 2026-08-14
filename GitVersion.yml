@@ -1,0 +1,52 @@
+# GitVersion configuration
+# Derives a semantic version from git history and tags so package versions
+# never have to be committed. See https://gitversion.net/
+
+mode: ContinuousDelivery
+assembly-versioning-scheme: MajorMinorPatch
+assembly-file-versioning-scheme: MajorMinorPatch
+tag-prefix: 'v'
+
+branches:
+  main:
+    regex: ^main$
+    mode: ContinuousDelivery
+    tag: ''
+    increment: Patch
+    prevent-increment-of-merged-branch-version: true
+    track-merge-target: false
+    source-branches: ['develop', 'feature', 'hotfix', 'release']
+    is-release-branch: true
+
+  develop:
+    regex: ^develop$
+    mode: ContinuousDeployment
+    tag: alpha
+    increment: Minor
+    source-branches: []
+
+  feature:
+    regex: ^features?[/-]
+    mode: ContinuousDeployment
+    tag: 'feature.{BranchName}'
+    increment: Inherit
+    source-branches: ['develop', 'main']
+
+  release:
+    regex: ^releases?[/-]
+    mode: ContinuousDelivery
+    tag: rc
+    increment: None
+    source-branches: ['develop', 'main']
+
+  hotfix:
+    regex: ^hotfix(es)?[/-]
+    mode: ContinuousDelivery
+    tag: beta
+    increment: Patch
+    source-branches: ['main']
+
+ignore:
+  sha: []
+
+merge-message-formats: {}

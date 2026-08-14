@@ -1,0 +1,39 @@
+# Package build output
+dist/
+output/
+*.nupkg
+*.snupkg
+
+# TwinCAT / Visual Studio
+.vs/
+_Boot/
+_CompileInfo/
+_Deployment/
+_Libraries/
+_ModuleInstall/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.tpy
+*.tmc
+*.compileinfo
+*.compiled-library
+LineIDs.dbg
+LineIDs.txt
+
+# NuGet
+packages/
+*.nuget.props
+*.nuget.targets
+
+# OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# Editors
+*.swp
+*~
+.idea/

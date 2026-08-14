@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>TcXaeShellSettings</id>
+    <!--
+      A concrete version keeps `build\pack.ps1` working out of the box.
+      CI overrides it with the version computed by GitVersion:
+          .\build\pack.ps1 -Version 1.4.0
+      Alternatively use the NuGet token <version>$version$</version> and pass
+      -Version at pack time; the token has no meaning without that switch.
+    -->
+    <version>1.0.0</version>
+    <title>TcXaeShell Settings Package</title>
+    <authors>Philipp Leidig</authors>
+    <projectUrl>https://github.com/philippleidig/tcpkg-custom-package-samples</projectUrl>
+    <copyright>(c) Philipp Leidig</copyright>
+    <licenseUrl>https://github.com/philippleidig/tcpkg-custom-package-samples/blob/main/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <icon>icon.png</icon>
+    <tags>CategorySettings VariantXAE</tags>
+    <description>Imports predefined Visual Studio settings (General.vssettings) into TcXaeShell IDE. This package configures the IDE with standardized toolbar layouts, window positions, and other UI customizations.</description>
+    <releaseNotes>Initial release with General.vssettings import functionality.</releaseNotes>
+    <dependencies />
+  </metadata>
+
+  <files>
+    <file src="PackageIcon.png" target="icon.png" />
+    <file src="tools\**" target="tools" />
+    <file src="General.vssettings" target="tools\General.vssettings" />
+  </files>
+</package>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Workload (meta-package) manifest.
+
+  A workload ships no payload of its own. It only declares dependencies, and
+  TcPkg installs those packages when the workload is installed.
+
+  See ../../../docs/workloads.md for the full explanation.
+-->
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <!-- Required: unique workload identifier. The ".Workload" suffix is a convention. -->
+    <id>MyCustomLibraries.Workload</id>
+
+    <!-- Required: semantic version of the workload itself, independent of its components -->
+    <version>1.0.0</version>
+
+    <!-- Optional: display name -->
+    <title>My Custom PLC Libraries</title>
+
+    <!-- Required: author or team -->
+    <authors>Your Name</authors>
+
+    <!-- Optional metadata -->
+    <projectUrl>https://www.yourwebsite.com/</projectUrl>
+    <copyright>(c) Your Name</copyright>
+    <licenseUrl>https://www.yourwebsite.com/license</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+
+    <!-- Required: icon shown in the Package Manager UI -->
+    <icon>icon.png</icon>
+
+    <!-- Required: one-liner shown in `tcpkg list` -->
+    <description>Installs the complete set of custom PLC libraries maintained by our team.</description>
+
+    <!-- Optional -->
+    <releaseNotes>Initial workload release bundling MyCustomLibraryPackage.</releaseNotes>
+
+    <!--
+      REQUIRED for a workload - do not remove.
+      Without this element TcPkg treats the package as a regular package,
+      regardless of the "Workload" tag below, and `tcpkg list -t workload`
+      will not show it.
+    -->
+    <packageTypes>
+      <packageType name="Workload" />
+    </packageTypes>
+
+    <!--
+      Tags:
+      - CategoryMy Custom  -> groups the workload in the UI (&#160; = non-breaking space)
+      - Workload           -> marks it as a workload for search and filtering
+      - VariantXAE         -> engineering systems only
+    -->
+    <tags>CategoryMy&#160;Custom Workload VariantXAE</tags>
+
+    <!--
+      The component packages this workload installs.
+
+      Use EXACT versions - the bracketed form "[1.2.3]" - so the workload always
+      produces a reproducible machine state. An open range like "1.2.3" means
+      "1.2.3 or newer" and two machines installed a week apart can end up with
+      different library versions.
+
+      Every component package must already exist in the feed before the workload
+      is installed, otherwise dependency resolution fails.
+    -->
+    <dependencies>
+      <dependency id="MyCustomLibraryPackage" version="[1.2.3]" />
+      <!-- Add further component packages here:
+      <dependency id="AnotherLibraryPackage" version="[2.0.1]" />
+      -->
+    </dependencies>
+  </metadata>
+
+  <files>
+    <file src="PackageIcon.png" target="icon.png" />
+    <file src="tools\**" target="tools" />
+  </files>
+</package>

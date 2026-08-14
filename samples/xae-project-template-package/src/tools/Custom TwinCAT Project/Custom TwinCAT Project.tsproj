@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcVersionFixed="true">
+	<Project ProjectGUID="{F62CA2C5-768D-42DC-A4C9-402F3C512875}" RelativeTargetNetId="true" RelativeIpAddresses="true" SaveSolutionArchive="true" ShowHideConfigurations="#x3c6">
+		<System>
+			<Settings RouterMemory="134217728" MaxStackSize="512"/>
+		</System>
+		<Io AddIoDescToArchive="true">
+
+		</Io>
+	</Project>
+</TcSmProject>

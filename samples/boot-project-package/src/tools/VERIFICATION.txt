@@ -1,0 +1,31 @@
+=== VERIFICATION ===
+
+This package contains a complete TwinCAT boot project intended for deployment into the
+boot directory of a TwinCAT runtime (XAR).
+
+Files included (under tools\TwinCAT RT (x64)\):
+- CurrentConfig.xml                 System configuration
+- CurrentConfig.tszip               Compressed system configuration
+- CurrentConfig\Untitled1.tpzip     Archived engineering project
+- Plc\Port_851.app                  Compiled PLC application for port 851
+- Plc\Port_851_boot.tizip           PLC boot information
+- Plc\Port_851.autostart            Marker file enabling autostart of the PLC application
+- Plc\Port_851.cid                  Compile / configuration identifier
+- Plc\Port_851.crc                  Checksum of the PLC application
+- Plc\Port_851.occ                  Online change context
+- Plc\Port_851.oce                  Online change entries
+- Plc\Port_851.ocm                  Online change map
+
+The boot project was produced by the package author with TwinCAT XAE by activating the
+configuration and exporting the resulting boot folder.
+
+No external downloads or third-party binaries are included.
+
+To verify:
+1. The .tszip, .tpzip and .tizip files are ZIP archives and can be inspected with any
+   archive tool.
+2. CurrentConfig.xml is plain XML and can be opened in a text editor to review the
+   configured devices, tasks and routes.
+3. Port_851.app can be loaded into a TwinCAT runtime and compared against the source
+   project by its checksum (Port_851.crc).
+4. The package version matches the <version> element in MachineTypeABC.nuspec.

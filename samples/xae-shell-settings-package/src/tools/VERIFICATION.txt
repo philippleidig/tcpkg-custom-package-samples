@@ -1,0 +1,19 @@
+﻿=== VERIFICATION ===
+
+This package contains a Visual Studio settings file (.vssettings) intended for import into 
+Beckhoff TcXaeShell IDE.
+
+File included:
+- General.vssettings
+
+The settings file was created by exporting settings from TcXaeShell and contains:
+- Command bar and toolbar configurations
+- Window layout preferences
+- Editor settings
+
+No external downloads or third-party binaries are included.
+
+To verify:
+1. You can open the .vssettings file in any text editor to inspect its XML contents.
+2. Package version matches the version stated in TcXaeShellSettings.nuspec.
+3. Settings can be manually imported via Tools -> Import and Export Settings in TcXaeShell.

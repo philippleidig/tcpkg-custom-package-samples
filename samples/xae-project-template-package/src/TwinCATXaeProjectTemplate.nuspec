@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <!-- Required: package ID, must be unique in the feed. Used by `tcpkg install <id>`. -->
+    <id>TwinCAT.XAE.ProjectTemplate</id>
+
+    <!-- Required: semantic versioning major.minor.patch -->
+    <version>1.0.0</version>
+
+    <!-- Optional: human-friendly name -->
+    <title>TwinCAT XAE Project Template</title>
+
+    <!-- Required: author name or team -->
+    <authors>Custom Author</authors>
+
+    <!-- Optional: link to your project site or documentation -->
+    <projectUrl>https://www.yourwebsite.com/</projectUrl>
+
+    <!-- Optional: copyright notice -->
+    <copyright>(c) Copyright</copyright>
+
+    <!-- Optional: license link -->
+    <licenseUrl>https://www.yourwebsite.com/license</licenseUrl>
+
+    <!-- Optional: prompt the user to accept the license before installing -->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+
+    <!-- Required: icon shown in the Package Manager UI. References the packed target name. -->
+    <icon>icon.png</icon>
+
+    <!--
+      Tags control placement and visibility in the Package Manager UI:
+      - CategoryMy Custom -> UI group ("&#160;" is a non-breaking space)
+      - VariantXAE        -> engineering systems only, hidden on runtime-only machines
+      See ../../../docs/nuspec-reference.md
+    -->
+    <tags>CategoryMy&#160;Custom VariantXAE</tags>
+
+    <!-- Required: shown in `tcpkg list` and in the UI -->
+    <description>Contains a custom TwinCAT XAE project template that appears in the New Project dialog.</description>
+
+    <!-- Optional: shown in package viewers, markdown supported -->
+    <releaseNotes>Initial release of the custom TwinCAT project template.</releaseNotes>
+
+    <!-- Optional: other packages that must be installed first -->
+    <dependencies />
+  </metadata>
+
+  <!-- Maps files from disk (src) into the package (target) -->
+  <files>
+    <!-- Icon file: the <icon> element above references the target name -->
+    <file src="PackageIcon.png" target="icon.png" />
+
+    <!--
+      Packs the lifecycle scripts AND the "Custom TwinCAT Project" template folder,
+      which lives inside tools\ and is therefore picked up by this wildcard.
+    -->
+    <file src="tools\**" target="tools" />
+  </files>
+</package>

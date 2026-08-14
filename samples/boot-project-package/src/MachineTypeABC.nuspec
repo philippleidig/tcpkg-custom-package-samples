@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <!-- Package ID: must be unique across your feed or nuget.org -->
+    <id>MachineTypeABC</id>
+
+    <!-- Semantic versioning: major.minor.patch -->
+    <version>1.2.10</version>
+
+    <!-- Human-friendly name -->
+    <title>Bootproject of Machine Type ABC</title>
+
+    <!-- Author name or team -->
+    <authors>Your Name</authors>
+
+    <!-- Link to your project site or documentation -->
+    <projectUrl>https://www.yourwebsite.com/</projectUrl>
+
+    <!-- Copyright notice -->
+    <copyright>(c) Your Name</copyright>
+
+    <!-- License file (or external license link) -->
+    <licenseUrl>https://www.yourwebsite.com/license</licenseUrl>
+
+    <!-- Should the user accept the license during install? -->
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+
+    <!-- Icon shown in Chocolatey GUI, use a PNG file -->
+    <icon>icon.png</icon>
+
+    <!-- Tags control how your package is displayed in the UI-->
+    <tags> CategoryMy&#160;Custom&#160; VariantXAR
+    </tags>
+
+    <!-- One-liner or paragraph description (required) -->
+    <description>This is a custom package for delivering a TwinCAT boot project.</description>
+
+    <!-- Optional: Shown in package viewers -->
+    <releaseNotes>These are my custom package release notes. Use markdown</releaseNotes>
+
+    <dependencies>
+      <!-- Example:
+      <dependency id="OtherPackage" version="[1.0.0,2.0.0)" />
+      -->
+    </dependencies>
+  </metadata>
+
+  <files>
+    <file src="PackageIcon.png" target="icon.png" />
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
