@@ -155,7 +155,7 @@ The manifest is a standard NuGet `.nuspec` XML file. TcPkg adds meaning to a few
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <!-- Required: unique within your feed. Also the name used by `tcpkg install <id>`. -->
     <id>MyCustomLibraryPackage</id>

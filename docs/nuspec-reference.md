@@ -13,7 +13,7 @@ This page documents every element used by the samples in this repository.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <!-- identity, description, tags, dependencies -->
   </metadata>
@@ -25,14 +25,21 @@ This page documents every element used by the samples in this repository.
 
 ### Schema version
 
-Both of the following namespaces work:
+The namespace must be one that NuGet knows. NuGet defines exactly six, and the newest — the one
+all samples in this repository use — is:
 
-| Namespace | Notes |
-| --- | --- |
-| `http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd` | Older schema. Still accepted. |
-| `http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd` | Current schema. **Use this for new packages.** |
+```
+http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd
+```
 
-The namespace only affects XSD validation in editors; `tcpkg pack` accepts both.
+The older namespaces (`2010/07`, `2011/08`, `2011/10`, `2012/06`, `2013/01`) are still accepted but
+have no advantage.
+
+> **Invented namespaces fail the build.** NuGet has never published a `2015/06` or later
+> `nuspec.xsd`, even though the pattern looks like it should continue. Packing a manifest with an
+> unknown namespace aborts with
+> *"The schema version of '\<id\>' is incompatible with version x.y.z of NuGet"* — a message that
+> suggests upgrading NuGet, which does not help, because no NuGet version knows the namespace.
 
 ---
 
@@ -204,7 +211,7 @@ An empty `<dependencies />` element is valid and explicit.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <id>MyCustomLibraryPackage</id>
     <version>1.2.3</version>

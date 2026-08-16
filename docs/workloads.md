@@ -52,7 +52,7 @@ done by TcPkg's dependency resolution.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <id>MyCustomLibraries.Workload</id>
     <version>1.0.0</version>
