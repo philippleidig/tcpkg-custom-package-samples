@@ -9,7 +9,6 @@ every new project starts from an approved baseline instead of an empty solution.
 | **Variant** | `VariantXAE` — engineering systems |
 | **Target** | `<InstallDir>\Components\Base\PrjTemplate\Custom` |
 | **Mechanism** | File copy + `templates.vsdir` registration |
-| **Origin** | Consolidated from [`tcpkg-custom-xae-project-template-package`](https://github.com/philippleidig/tcpkg-custom-xae-project-template-package) |
 
 ---
 

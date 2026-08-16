@@ -10,7 +10,6 @@ the local library repository, so it can be referenced from any PLC project.
 | **Target** | Local PLC library repository |
 | **Mechanism** | `RepTool.exe --installLib` |
 | **Side-by-side versions** | Yes (`AllowMultipleVersions`) |
-| **Origin** | Consolidated from [`tcpkg-custom-library-package`](https://github.com/philippleidig/tcpkg-custom-library-package) |
 
 ---
 
