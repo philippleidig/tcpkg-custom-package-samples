@@ -10,7 +10,6 @@ reboot.
 | **Variant** | `VariantXAR` — runtime systems |
 | **Target** | `BootDir` from the registry, typically `C:\TwinCAT\3.1\Boot` |
 | **Mechanism** | File copy |
-| **Origin** | Consolidated from [`tcpkg-custom-boot-project-package`](https://github.com/philippleidig/tcpkg-custom-boot-project-package) |
 
 ---
 

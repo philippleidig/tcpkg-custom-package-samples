@@ -9,7 +9,6 @@ station uses the same IDE layout, editor behaviour, fonts, and shortcuts.
 | **Variant** | `VariantXAE` — engineering systems |
 | **Target** | TcXaeShell user settings |
 | **Mechanism** | `TcXaeShell.exe /command "Tools.ImportandExportSettings /import:…"` |
-| **Origin** | Consolidated from [`tcpkg-tcxaeshell-settings-package`](https://github.com/philippleidig/tcpkg-tcxaeshell-settings-package) |
 
 ---
 

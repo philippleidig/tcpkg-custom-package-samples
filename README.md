@@ -72,20 +72,6 @@ GitHub Packages, Artifactory, or ProGet.
 Every sample folder contains its own `README.md` explaining **what the package does**, **when to
 use it**, **how it works internally**, and **how to build, install, and adapt it**.
 
-### Where the samples come from
-
-Four of the samples were previously maintained as standalone repositories and are now developed
-here:
-
-| Sample | Original repository |
-| --- | --- |
-| `samples/plc-library-package` | [`tcpkg-custom-library-package`](https://github.com/philippleidig/tcpkg-custom-library-package) |
-| `samples/boot-project-package` | [`tcpkg-custom-boot-project-package`](https://github.com/philippleidig/tcpkg-custom-boot-project-package) |
-| `samples/xae-project-template-package` | [`tcpkg-custom-xae-project-template-package`](https://github.com/philippleidig/tcpkg-custom-xae-project-template-package) |
-| `samples/xae-shell-settings-package` | [`tcpkg-tcxaeshell-settings-package`](https://github.com/philippleidig/tcpkg-tcxaeshell-settings-package) |
-
-`samples/plc-library-workload` is new and demonstrates workload meta-packages.
-
 ---
 
 ## Prerequisites
